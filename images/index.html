@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .slider-container {
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        /* max-width: 800px; */
+        overflow: hidden;
+    }
+
+    .slider {
+        display: flex;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .slider img {
+        width: 100%;
+        height: auto;
+    }
+
+    .slider-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        /* margin-left: 50px; */
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #prevBtn {
+        left: 20px;
+    }
+    .btn{
+        margin-left: 120px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <img src="https://source.unsplash.com/1290x1080/?gamer" alt="Image 1">
+            <img src="https://source.unsplash.com/1290x1080/?hacker" alt="Image 2">
+            <img src="https://source.unsplash.com/1290x1080/?developer" alt="Image 3">
+        </div>
+        <button id="prevBtn" class="slider-button">Previous</button>
+        <button id="nextBtn" class="slider-button btn">Next</button>
+    </div>
+    <script>
+    const slider = document.querySelector('.slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let slideIndex = 0;
+
+    prevBtn.addEventListener('click', () => {
+        slideIndex = (slideIndex - 1 + slider.children.length) % slider.children.length;
+        updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        slideIndex = (slideIndex + 1) % slider.children.length;
+        updateSlider();
+    });
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    </script>
+</body>
+</html>
